@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SituacaoMetroTrem"
+             x:Class="SituacaoMetroTrem.MainPage"
+             xmlns:VM="clr-namespace:SituacaoMetroTrem.ViewModels"
+             Title="Situação das Linhas do Metro e Trem">
+    <ContentPage.BindingContext>
+        <VM:SituacaoMetroTremViewModel/>
+    </ContentPage.BindingContext>
+    
+    <StackLayout Orientation="Vertical">
+        <ListView x:Name="ListViewSituacaoMetroTrem" ItemsSource="{Binding SituacoesMetroTrem}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell Text="{Binding Nome}" 
+                               Detail="{Binding Status}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Sincronizar" Command="{Binding GetCatsCommand}"/>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+        <!--BindingContext="{Binding Source={x:Reference RootPage}}">
+        <ListView ItemsSource="{Binding SituacoesMetroTremModel}"
+>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Nome}" Detail="{Binding Status}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        --><!--<ActivityIndicator IsRunning="{Binding IsBusy}" />-->
+    </StackLayout>
+</ContentPage>
